@@ -98,12 +98,16 @@ Error handling for missing or mismatched features
 Custom styling for better user experience
 
 # 🛠️ Installation and Setup
+
 1️⃣ Clone the Repository
+https://github.com/CheboluGayatri/HousePrice.git
 
 2️⃣ Install Dependencies
 pip install -r requirements.txt
+
 3️⃣ Train the Model 
 python train.py
+
 4️⃣ Run the Streamlit App
 streamlit run app.py --server.port 8501
 Sample Output
