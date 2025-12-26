@@ -109,7 +109,6 @@ st.markdown(
 # Title and description
 # ----------------------------
 st.title("🏡 House Price Prediction App")
-st.markdown("Fill in the details below to predict the house price.")
 
 # ----------------------------
 # Sidebar Inputs
