@@ -1,11 +1,12 @@
 import pandas as pd
 import joblib
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score, mean_squared_error
+import numpy as np
 import os
 import warnings
-import numpy as np
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 
 # ----------------------------
 # Suppress warnings
@@ -13,12 +14,14 @@ import numpy as np
 warnings.filterwarnings("ignore")
 
 # ----------------------------
-# Load housing dataset
+# Load dataset
 # ----------------------------
 df = pd.read_csv("Housing.csv")
 df = df.dropna()
 
-# Convert categorical features to numeric (One-Hot Encoding)
+# ----------------------------
+# One-Hot Encoding
+# ----------------------------
 df = pd.get_dummies(df, columns=[
     'mainroad', 'guestroom', 'basement',
     'hotwaterheating', 'airconditioning',
@@ -26,13 +29,13 @@ df = pd.get_dummies(df, columns=[
 ], drop_first=True)
 
 # ----------------------------
-# Features and Target
+# Features & Target
 # ----------------------------
 X = df.drop("price", axis=1)
 y = df["price"]
 
 # ----------------------------
-# Split data (80% train, 20% test)
+# Train-Test Split
 # ----------------------------
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
@@ -45,20 +48,45 @@ model = LinearRegression()
 model.fit(X_train, y_train)
 
 # ----------------------------
-# Evaluate Model
+# Predictions
 # ----------------------------
 y_pred = model.predict(X_test)
+
+# ----------------------------
+# Evaluation Metrics
+# ----------------------------
 r2 = r2_score(y_test, y_pred)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+mae = mean_absolute_error(y_test, y_pred)
 
-print(f"📊 Model Performance:")
-print(f"   R² Score : {r2:.4f}")
-print(f"   RMSE     : {rmse:.2f}")
+# Safe MAPE calculation (avoid division by zero)
+epsilon = 1e-10
+mape = np.mean(np.abs((y_test - y_pred) / (y_test + epsilon))) * 100
+
+# Accuracy-like metric
+accuracy = 100 - mape
 
 # ----------------------------
-# Save Model and Features
+# Print Results
+# ----------------------------
+print("\n📊 Model Performance:")
+print(f"R² Score        : {r2:.4f}")
+print(f"RMSE            : {rmse:.2f}")
+print(f"MAE             : {mae:.2f}")
+print(f"MAPE            : {mape:.2f}%")
+print(f"Accuracy (~%)   : {accuracy:.2f}%")
+
+# ----------------------------
+# Save Model
 # ----------------------------
 os.makedirs("models", exist_ok=True)
-joblib.dump((model, X.columns.tolist()), "models/house_price_model.joblib")
 
-print("✅ Model trained and saved to models/house_price_model.joblib")
+joblib.dump(
+    {
+        "model": model,
+        "features": X.columns.tolist()
+    },
+    "models/house_price_model.joblib"
+)
+
+print("\n✅ Model saved at: models/house_price_model.joblib")
