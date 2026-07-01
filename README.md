@@ -1,153 +1,265 @@
-# House Price Prediction using Machine Learning
-#  Project Overview
+# 🏡 House Price Prediction using Machine Learning
 
-This project predicts house prices based on various property features using a Machine Learning model. It uses Linear Regression for price prediction and a Streamlit web application to provide an interactive user interface where users can input house details and get an estimated price instantly.
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?logo=scikitlearn)
+![Streamlit](https://img.shields.io/badge/Streamlit-Web%20App-red?logo=streamlit)
+![GitHub](https://img.shields.io/badge/GitHub-Version%20Control-black?logo=github)
 
-The project demonstrates the complete ML workflow, from data preprocessing and model training to deployment as a user facing application.
+A Machine Learning web application that predicts residential house prices using property characteristics such as area, number of bedrooms, bathrooms, parking availability, furnishing status, and additional amenities.
 
-# 🎯 Problem Statement
+The project demonstrates an end-to-end Machine Learning workflow, including data preprocessing, feature engineering, model training, evaluation, model persistence, and deployment as an interactive web application using Streamlit.
 
-House prices depend on multiple factors such as area, number of bedrooms, location preferences, and amenities. Manually estimating prices can be inconsistent and time consuming. This project aims to build a data driven solution that predicts house prices accurately based on historical data.
+---
 
-# 🧠 Machine Learning Approach
-
-Model Used: Linear Regression
-
-Reason: Simple, interpretable, and effective as a baseline model for regression problems
-
-Task Type: Supervised Regression
-
-# 📂 Dataset Information
-
-Dataset Name: Housing.csv
-
-Target Variable: price
-
-Features Include:
-
-Area (sq ft)
-
-Bedrooms
-
-Bathrooms
-
-Stories
-
-Parking
-
-Main road access
-
-Guest room
-
-Basement
-
-Hot water heating
-
-Air conditioning
-
-Preferred area
-
-Furnishing status
-
-Data Preprocessing
-
-Removed missing values
-
-Converted categorical variables using One Hot Encoding
-
-Ensured feature consistency between training and prediction
-
-# ⚙️ Project Structure
-
-├── Housing.csv
-├── train.py # Model training and evaluation
-├── app.py # Streamlit web application
-├── models/
-│ └── house_price_model.joblib
-├── requirements.txt
-└── README.md
-
-# 🚀 Model Training
-
-The model is trained using an 80 20 train test split.
-
-# Evaluation Metrics
-
-R² Score to measure goodness of fit
-
-RMSE to measure prediction error in actual price units
-
-After training, the model and feature names are saved using joblib for reuse in the Streamlit app.
-
-# 🖥️ Web Application (Streamlit)
-
-The Streamlit app allows users to:
-
-Enter house details using a clean sidebar UI
-
-Predict house price with a single click
-
-View results instantly
-
-# Features
-
-Interactive UI
-
-Error handling for missing or mismatched features
-
-Custom styling for better user experience
-
-# 🛠️ Installation and Setup
-
-1️⃣ Clone the Repository
-https://github.com/CheboluGayatri/HousePrice.git
-
-2️⃣ Install Dependencies
-pip install -r requirements.txt
-
-3️⃣ Train the Model 
-python train.py
-
-4️⃣ Run the Streamlit App
-streamlit run app.py --server.port 8501
-Sample Output
-
-Estimated House Price displayed in Indian Rupees
-
-Based on user selected features
-
-# 🔐 Error Handling
-
-Checks if model file exists
-
-Prevents prediction if feature mismatch occurs
-
-Displays user friendly error messages
-
-# 🔮 Future Improvements
-
-Try advanced models like Random Forest or XGBoost
-
-Perform feature scaling and outlier handling
-
-Add location based features
-
-Deploy using Streamlit Cloud or Docker
-
-Convert into REST API using FastAPI
-
-# 📚 Skills Demonstrated
-
-Data preprocessing and feature engineering
-
-Supervised machine learning
-
-Model evaluation and persistence
-
-Streamlit based deployment
-
-End to end ML project implementation
 # 🌐 Live Demo
-The application is deployed using Streamlit Cloud and is accessible at:
+
+**Application:**  
 https://houseprice-kcvnxs5sxgawny4wzehj52.streamlit.app/
-ny updates pushed to the main branch are automatically reflected in the live app.
+
+---
+
+# 📖 Project Overview
+
+The House Price Prediction application uses a **Linear Regression** model trained on housing data to estimate property prices based on user-provided inputs.
+
+The application provides an intuitive web interface where users can enter property details and receive an estimated house price instantly.
+
+This project demonstrates practical implementation of:
+
+- Data preprocessing
+- Feature engineering
+- Machine Learning model training
+- Regression analysis
+- Model evaluation
+- Model deployment
+- Interactive web application development
+
+---
+
+# ✨ Key Features
+
+- Real-time house price prediction
+- Interactive Streamlit interface
+- Responsive and user-friendly design
+- Data preprocessing and feature engineering
+- One-Hot Encoding for categorical variables
+- Automatic feature alignment with the trained model
+- Model serialization using Joblib
+- Robust error handling
+- Fast prediction using a pre-trained model
+- Cloud deployment with Streamlit Community Cloud
+
+---
+
+# 🛠 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| **Programming Language** | Python 3 |
+| **Machine Learning** | Scikit-learn, Linear Regression |
+| **Data Processing** | Pandas, NumPy |
+| **Data Preprocessing** | Data Cleaning, Missing Value Handling, One-Hot Encoding, Feature Engineering |
+| **Model Training** | Train-Test Split, Linear Regression |
+| **Model Evaluation** | R² Score, RMSE, MAE, MAPE |
+| **Model Persistence** | Joblib |
+| **Web Framework** | Streamlit |
+| **Frontend/UI** | Streamlit Components, HTML, CSS |
+| **Development Environment** | Visual Studio Code |
+| **Version Control** | Git, GitHub |
+| **Deployment Platform** | Streamlit Community Cloud |
+| **Package Manager** | pip |
+| **Dataset Format** | CSV |
+| **Saved Model Format** | Joblib (.joblib) |
+
+---
+
+# 🔄 Machine Learning Workflow
+
+```text
+Housing Dataset
+        │
+        ▼
+Data Cleaning
+        │
+        ▼
+Feature Engineering
+        │
+        ▼
+One-Hot Encoding
+        │
+        ▼
+Train-Test Split
+        │
+        ▼
+Linear Regression Model
+        │
+        ▼
+Model Evaluation
+        │
+        ▼
+Save Trained Model
+        │
+        ▼
+Streamlit Web Application
+        │
+        ▼
+Real-Time House Price Prediction
+```
+
+---
+
+# 📂 Project Structure
+
+```text
+House-Price-Prediction/
+│
+├── models/
+│   └── house_price_model.joblib
+│
+├── app.py
+├── train_model.py
+├── Housing.csv
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+# 📥 Input Features
+
+The prediction model uses the following property attributes:
+
+| Feature | Description |
+|---------|-------------|
+| Area | Total house area (sq.ft.) |
+| Bedrooms | Number of bedrooms |
+| Bathrooms | Number of bathrooms |
+| Stories | Number of floors |
+| Parking | Available parking spaces |
+| Main Road | Road accessibility |
+| Guest Room | Guest room availability |
+| Basement | Basement availability |
+| Hot Water Heating | Heating facility |
+| Air Conditioning | Air conditioning availability |
+| Preferred Area | Preferred residential area |
+| Furnishing Status | Furnished, Semi-Furnished, Unfurnished |
+
+---
+
+# 📈 Model Evaluation
+
+The trained model is evaluated using standard regression metrics:
+
+- **R² Score**
+- **Root Mean Squared Error (RMSE)**
+- **Mean Absolute Error (MAE)**
+- **Mean Absolute Percentage Error (MAPE)**
+- **Approximate Prediction Accuracy**
+
+These metrics help assess prediction accuracy and overall model performance.
+
+---
+
+# 🚀 Getting Started
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/your-username/House-Price-Prediction.git
+```
+
+## Navigate to the Project
+
+```bash
+cd House-Price-Prediction
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Launch the Application
+
+```bash
+streamlit run app.py
+```
+
+The application will be available at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+# 📦 Required Packages
+
+```text
+pandas>=1.3
+numpy>=1.21
+scikit-learn>=1.0
+joblib>=1.1
+streamlit>=1.25
+```
+
+---
+
+# ☁️ Deployment
+
+**Platform:** Streamlit Community Cloud
+
+### Deployment Process
+
+1. Push the project to GitHub.
+2. Sign in to Streamlit Community Cloud.
+3. Connect the GitHub repository.
+4. Select `app.py` as the application entry point.
+5. Install dependencies from `requirements.txt`.
+6. Deploy the application.
+
+**Live Application**
+
+https://houseprice-kcvnxs5sxgawny4wzehj52.streamlit.app/
+
+---
+
+# 🎯 Future Enhancements
+
+- Random Forest Regression
+- XGBoost Regression
+- Hyperparameter Tuning
+- Interactive Data Visualizations
+- Feature Importance Analysis
+- Model Comparison Dashboard
+- Location-Based House Price Prediction
+- REST API Integration
+- Docker Support
+- CI/CD Pipeline
+- Cloud Database Integration
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push your branch.
+5. Submit a Pull Request.
+
+---
+
+# 👩‍💻 Author
+
+**Gayatri**
+
+- **Portfolio:** https://your-portfolio.com
+- **GitHub:** https://github.com/your-username
+- **LinkedIn:** https://linkedin.com/in/your-profile
+
+
